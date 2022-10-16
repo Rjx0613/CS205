@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/CALCULATOR.dir/src/calculate.cpp.o CMakeFiles/CALCULATOR.dir/src/compNoX.cpp.o CMakeFiles/CALCULATOR.dir/src/compX.cpp.o CMakeFiles/CALCULATOR.dir/src/main.cpp.o CMakeFiles/CALCULATOR.dir/src/specialComp.cpp.o -o CALCULATOR 

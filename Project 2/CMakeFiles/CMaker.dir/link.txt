@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/CMaker.dir/src/calculate.cpp.o CMakeFiles/CMaker.dir/src/compNoX.cpp.o CMakeFiles/CMaker.dir/src/compX.cpp.o CMakeFiles/CMaker.dir/src/main.cpp.o CMakeFiles/CMaker.dir/src/specialComp.cpp.o -o CMaker 
