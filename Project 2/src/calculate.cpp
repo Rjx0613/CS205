@@ -387,7 +387,7 @@ string AnyDivide(string a, string b) //二分逼近
         bigger += "0";
     }
     string mid;
-    for (int i = 0; i < 1000; i++)
+    for (int i = 0; i < 35; i++)
     {
         mid = AnyMultiply(AnyAdd(bigger, smaller), "0.5");
         if (compareTo(AnyMultiply(mid, b), a))

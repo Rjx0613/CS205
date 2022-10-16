@@ -83,7 +83,7 @@ string Mysqrt(string a)
         else
             smaller = mid;
     }
-    return mid.substr(0, 10);
+    return mid.substr(0, 11);
 }
 
 string Mypow(string a, int b)

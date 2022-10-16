@@ -64,11 +64,7 @@ string compute(string a)
         }
         else
         {
-            if (operators.empty())
-            {
-                operators.push(now);
-            }
-            else if (now == "(")
+            if (now == "(")
             {
                 string part = "";
                 int count = 0;
@@ -82,13 +78,17 @@ string compute(string a)
                 arr.pop();
                 nums.push(compute(part));
             }
+            else if (operators.empty())
+            {
+                operators.push(now);
+            }
             else if (priority(now) > priority(operators.top()))
             {
                 operators.push(now);
             }
             else if (priority(now) <= priority(operators.top()))
             {
-                string b = nums.top();//进行单次计算
+                string b = nums.top(); //进行单次计算
                 nums.pop();
                 string c = nums.top();
                 nums.pop();
