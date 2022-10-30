@@ -117,7 +117,7 @@ matrix *multiplyMatrix(matrix *left, matrix *right)
     return mat;
 }
 
-float matrix_max(matrix *source)
+float matrix_Max(matrix *source)
 {
     if (source == NULL)
     {
@@ -139,7 +139,7 @@ float matrix_max(matrix *source)
     }
 }
 
-float matrix_min(matrix *source)
+float matrix_Min(matrix *source)
 {
     if (source == NULL)
     {
