@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/DEMO.dir/demo.c.o CMakeFiles/DEMO.dir/source1.c.o -o DEMO 
