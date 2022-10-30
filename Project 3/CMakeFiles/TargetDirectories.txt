@@ -1,0 +1,3 @@
+/home/jerry/CS205/Project 3/CMakeFiles/DEMO.dir
+/home/jerry/CS205/Project 3/CMakeFiles/edit_cache.dir
+/home/jerry/CS205/Project 3/CMakeFiles/rebuild_cache.dir
