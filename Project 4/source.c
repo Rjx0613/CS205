@@ -26,7 +26,6 @@ matrix *subtractMatrix(matrix *left, matrix *right)
     matrix *mat = NULL;
     size_t dataSize = left->row * left->col;
     float *dataNew = (float *)malloc(dataSize * sizeof(float));
-#pragma omp parallel for
     for (size_t i = 0; i < dataSize; i++)
     {
         dataNew[i] = left->data[i] - right->data[i];
@@ -222,19 +221,20 @@ void printMatrix(matrix *source)
 void measureTime(matrix *(*p)(matrix *, matrix *), matrix *mat1, matrix *mat2, char s[])
 {
     gettimeofday(&t1, NULL);
-    matrix *mat = p(mat1, mat2);
+    // for(int i=0;i<10;i++){
+    //     p(mat1,mat2);
+    // }
+    p(mat1,mat2);
     gettimeofday(&t2, NULL);
     int sec = t2.tv_sec - t1.tv_sec;
     float micsec = (float)(t2.tv_usec - t1.tv_usec) / 1000000;
-    printf("%s:%.5fs\n", s, sec + micsec);
-    delMat(mat);
+    printf("%s:%.5fs\n", s, (float)(sec + micsec));
 }
 
 int compare(matrix *mat1, matrix *mat2)
 {
     matrix *difference = subtractMatrix(mat1, mat2);
     int isTrue = 1;
-#pragma omp parallel for
     for (size_t i = 0; i < difference->row; i++)
     {
         for (size_t j = 0; j < difference->col; j++)
@@ -251,8 +251,8 @@ int compare(matrix *mat1, matrix *mat2)
 int main()
 {
 
-    matrix *mat1 = randMat(2048);
-    matrix *mat2 = randMat(2048);
+    matrix *mat1 = randMat(1024);
+    matrix *mat2 = randMat(1024);
 
     matmul_access_kj(randMat(500), randMat(500));
     matmul_access_kj(randMat(500), randMat(500));
@@ -270,27 +270,27 @@ int main()
     measureTime(matmul_access_trans, mat1, mat2, "accesss_trans");
     // printMatrix(subtractMatrix(mat3,matmul_access_trans(mat1, mat2)));
     matrix *mat5=matmul_access_trans(mat1, mat2);
-    printf("%d\n\n", compare(mat3, matmul_access_trans(mat1, mat2)));
+    printf("%d\n\n", compare(mat3, mat5));
 
     measureTime(matmul_access_kj, mat1, mat2, "access:kj");
     // printMatrix(subtractMatrix(mat3,matmul_access_kj(mat1, mat2)));
     matrix *mat6=matmul_access_kj(mat1, mat2);
-    printf("%d\n\n", compare(mat3, matmul_access_kj(mat1, mat2)));
+    printf("%d\n\n", compare(mat3,mat6));
 
     measureTime(matmul_openmp, mat1, mat2, "openmp");
     // printMatrix(subtractMatrix(mat3,matmul_openmp(mat1, mat2)));
     matrix *mat7=matmul_openmp(mat1, mat2);
-    printf("%d\n\n", compare(mat3, matmul_openmp(mat1, mat2)));
+    printf("%d\n\n", compare(mat3, mat7));
 
     measureTime(matmul_avx2, mat1, mat2, "avx2");
     // printMatrix(subtractMatrix(mat3,matmul_avx2(mat1, mat2)));
     matrix *mat8=matmul_avx2(mat1, mat2);
-    printf("%d\n\n", compare(mat3, matmul_avx2(mat1, mat2)));
+    printf("%d\n\n", compare(mat3, mat8));
 
     measureTime(matmul_avx2_openmp, mat1, mat2, "avx2_openmp");
     // printMatrix(subtractMatrix(mat3,matmul_avx2_openmp(mat1, mat2)));
     matrix *mat9=matmul_avx2_openmp(mat1, mat2);
-    printf("%d\n\n", compare(mat3, matmul_avx2_openmp(mat1, mat2)));
+    printf("%d\n\n", compare(mat3, mat9));
 
     measureTime(matmul_OPENBLAS, mat1, mat2, "openblas");
 
